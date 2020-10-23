@@ -1,10 +1,62 @@
 import sys
 
 def esPalabraReservada(palabra):
-
-    # Retorna verdadero o falso
-    # 7 o mas if
-    return
+    if (palabra=="platillo"):
+        return True
+    elif(palabra=="sal"):
+        return True
+    elif (palabra == "lizano"):
+        return True
+    elif (palabra == "("):
+        return True
+    elif (palabra == "=>"):
+        return True
+    elif (palabra == ")"):
+        return True
+    elif (palabra == ","):
+        return True
+    elif (palabra == "["):
+        return True
+    elif (palabra == "]"):
+        return True
+    elif (palabra == "-"):
+        return True
+    elif (palabra == "mezclar"):
+        return True
+    elif (palabra == "devolver"):
+        return True
+    elif (palabra == "fresco"):
+        return True
+    elif (palabra == "agua_dulce"):
+        return True
+    elif (palabra == "cafe"):
+        return True
+    elif (palabra == "listo"):
+        return True
+    elif (palabra == "AND"):
+        return True
+    elif (palabra == "OR"):
+        return True
+    elif (palabra == "$"):
+        return True
+    elif (palabra == "menu"):
+        return True
+    elif (palabra == "nl"):
+        return True
+    elif (palabra == "tab"):
+        return True
+    elif (palabra == "acompanar"):
+        return True
+    elif (palabra == "melcochon"):
+        return True
+    elif (palabra == "servir"):
+        return True
+    elif (palabra == "tomarOrden"):
+        return True
+    elif (palabra == "cocinar"):
+        return True
+    else:
+        return False
 
 def leerArchivo():
     # leer archivo, lo divide (.split(" ")) cada division la manda a procesar(linea)
