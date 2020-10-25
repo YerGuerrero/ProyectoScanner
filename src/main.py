@@ -1,8 +1,9 @@
 import sys
 
 class Scanner:
-    def __init__(self, palabra):
+    def __init__(self, palabra,nombreArchivo):
         self.palabra = palabra
+        self.archivo= nombreArchivo
 
     def esPalabraReservada(self):
         if (self.palabra=="platillo"):
@@ -79,6 +80,7 @@ class Scanner:
 
 def main():
     print(sys.argv[1])
+    Scanner("platillo","progra.txt").leerArchivo()
     # Se saca del args
     # leer archivo()
 
