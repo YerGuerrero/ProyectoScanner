@@ -118,7 +118,15 @@ class Scanner:
         return
 
     def esAritmetica(self):
-        return
+        listaAritmetica = ["+", "-", "/", "*", "(", ")", "%"]
+        resultado = False
+        try:
+            listaAritmetica.index(self.palabra)
+            resultado = True
+        except ValueError:
+            resultado = False
+        finally:
+            return resultado
 
     def procesarInstruccion(self):
 
