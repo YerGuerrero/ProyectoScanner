@@ -2,78 +2,84 @@ import sys
 import re
 
 class Scanner:
-    def __init__(self, palabra):
-        self.palabra = palabra
+    def __init__(self, nombre_archivo):
         self.lineaAtributo = 1
         self.listaTokens = []
+        self.archivo=nombre_archivo
 
     def formarToken(self, nombreToken, palabra, lineaAtributo):
         self.listaTokens.append([nombreToken, palabra, lineaAtributo])
         # Aqui va el print de cada token.
 
-    def esPalabraReservada(self):
-        if (self.palabra=="platillo"):
+    def esPalabraReservada(self, palabra):
+        if (palabra=="platillo"):
             return True
-        elif(self.palabra=="sal"):
+        elif(palabra=="sal"):
             return True
-        elif (self.palabra == "lizano"):
+        elif (palabra == "lizano"):
             return True
-        elif (self.palabra == "("):
+        elif (palabra == "("):
             return True
-        elif (self.palabra == "=>"):
+        elif (palabra == "=>"):
             return True
-        elif (self.palabra == ")"):
+        elif (palabra == ")"):
             return True
-        elif (self.palabra == ","):
+        elif (palabra == ","):
             return True
-        elif (self.palabra == "["):
+        elif (palabra == "["):
             return True
-        elif (self.palabra == "]"):
+        elif (palabra == "]"):
             return True
-        elif (self.palabra == "-"):
+        elif (palabra == "-"):
             return True
-        elif (self.palabra == "mezclar"):
+        elif (palabra == "mezclar"):
             return True
-        elif (self.palabra == "devolver"):
+        elif (palabra == "devolver"):
             return True
-        elif (self.palabra == "fresco"):
+        elif (palabra == "fresco"):
             return True
-        elif (self.palabra == "agua_dulce"):
+        elif (palabra == "agua_dulce"):
             return True
-        elif (self.palabra == "cafe"):
+        elif (palabra == "cafe"):
             return True
-        elif (self.palabra == "listo"):
+        elif (palabra == "listo"):
             return True
-        elif (self.palabra == "AND"):
+        elif (palabra == "AND"):
             return True
-        elif (self.palabra == "OR"):
+        elif (palabra == "OR"):
             return True
-        elif (self.palabra == "$"):
+        elif (palabra == "menu"):
             return True
-        elif (self.palabra == "menu"):
+        elif (palabra == "nl"):
             return True
-        elif (self.palabra == "nl"):
+        elif (palabra == "tab"):
             return True
-        elif (self.palabra == "tab"):
+        elif (palabra == "acompanar"):
             return True
-        elif (self.palabra == "acompanar"):
+        elif (palabra == "melcochon"):
             return True
-        elif (self.palabra == "melcochon"):
+        elif (palabra == "servir"):
             return True
-        elif (self.palabra == "servir"):
+        elif (palabra == "tomarOrden"):
             return True
-        elif (self.palabra == "tomarOrden"):
-            return True
-        elif (self.palabra == "cocinar"):
+        elif (palabra == "cocinar"):
             return True
         else:
             return False
 
     def leerArchivo(self):
-        # leer archivo, lo divide (.split(" ")) cada division la manda a procesar(linea)
+        archivo= open(self.archivo, 'r')
+        print("archivo", archivo)
+        for linea in archivo.readlines():
+            print(linea)
+            linea_leida = linea.split()
+            for i in linea_leida:
+                # self.procesarInstruccion(i)
+                print(i)
+        archivo.close()
         return
 
-    def esNombre(self):
+    def esNombre(self,palabra):
 
         patron = re.search("[a-z][a-zA-Z0-9]+", self.palabra)
         resultado = False
@@ -83,63 +89,58 @@ class Scanner:
     
         return resultado
 
-        #p = re.search("[a-z][a-zA-Z0-9]+")
-        #return p
 
-    def esComentario(self):
-
-        patron = re.search("^\$[a-zA-Z \-_\(\)/]+$", self.palabra)
+    def esComentario(self,palabra):
+        patron = re.search("^\$[a-zA-Z \-_\(\)/]+$", palabra)
         resultado = False
-
         try:
-            if self.palabra == patron.group():
+            if palabra == patron.group():
                 resultado = True
         except AttributeError:
-            print("Error en la linea " + self.lineaAtributo + ". Comentario contiene caracteres invalidos.")
+            print("Error en la linea " + str(self.lineaAtributo) + ". Comentario contiene caracteres invalidos.")
         finally:
             return resultado
 
-        return resultado
 
-    def esPunto(self):
+    def esPunto(self,palabra):
 
-        if self.palabra == ".":
+        if palabra == ".":
             return True
         else:
             return False
 
-    def esOperador(self):
+    def esOperador(self,palabra):
         return
 
-    def esFinal(self):
+    def esFinal(self,palabra):
         return
 
-    def esValor(self):
+    def esValor(self,palabra):
         return
 
-    def esAritmetica(self):
+    def esAritmetica(self,palabra):
         return
 
-    def procesarInstruccion(self):
+    def procesarInstruccion(self,palabra):
 
-        if esPalabraReservada():
-            formarToken("Palabra Reservada", self.palabra, self.lineaAtributo)
-        elif esNombre():
-            formarToken("Nombre", self.palabra, self.lineaAtributo)
-        elif esComentario():
-            formarToken("Comentario", self.palabra, self.lineaAtributo)
-        elif esPunto():
-            formarToken("Punto", self.palabra, self.lineaAtributo)
-        elif esValor():
-            formarToken("Valor", self.palabra, self.lineaAtributo)
-        elif esOperador():
-            formarToken("Operador", self.palabra, self.lineaAtributo)
-        elif esFinal():
-            formarToken("Final", self.palabra, self.lineaAtributo)
-        elif esAritmetica():
-            formarToken("Aritmetica", self.palabra, self.lineaAtributo)
+        if self.esPalabraReservada(palabra):
+            self.formarToken("Palabra Reservada", palabra, self.lineaAtributo)
+        elif self.esNombre(palabra):
+            self.formarToken("Nombre", palabra, self.lineaAtributo)
+        elif self.esComentario(palabra):
+            self.formarToken("Comentario", palabra, self.lineaAtributo)
+        elif self.esPunto(palabra):
+            self.formarToken("Punto", palabra, self.lineaAtributo)
+        elif self.esValor(palabra):
+            self.formarToken("Valor", palabra, self.lineaAtributo)
+        elif self.esOperador(palabra):
+            self.formarToken("Operador", palabra, self.lineaAtributo)
+        elif self.esFinal(palabra):
+            self.formarToken("Final", palabra, self.lineaAtributo)
+        elif self.esAritmetica(palabra):
+            self.formarToken("Aritmetica", palabra, self.lineaAtributo)
         else:
-            print("Error en linea " + self.lineaAtributo)
+            print("Error en linea " + str(self.lineaAtributo))
             exit
             # tirar error diciendo que no es ninguna de estas.
 
@@ -152,11 +153,9 @@ class Scanner:
         # Llamar a imprimir Tipo de componente lexico, Texto del componente lexico, Atributos adicionales del componente
         return
 
-
 def main():
     print(sys.argv[1])
-    # Se saca del args
-    # leer archivo()
+    Scanner( sys.argv[1]).leerArchivo()
 
 
 main()
