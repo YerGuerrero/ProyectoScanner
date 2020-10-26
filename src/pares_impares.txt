@@ -1,0 +1,13 @@
+$ Función para números pares e impares
+platillo par_impar(n)[
+	mezclar - n>0 - [
+	       cafe ¿n%2==0? [
+servir(“Es par”).
+       ]
+	       fresco[
+servir(“No es par”).
+        ]
+        n => n-1.
+]
+Listo.
+]
