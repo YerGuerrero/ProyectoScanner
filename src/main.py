@@ -75,7 +75,6 @@ class Scanner:
                 self.procesarInstruccion(i)
             self.lineaAtributo += 1
         archivo.close()
-        return
 
     def esNombre(self,palabra):
         resultado = bool(re.search("^[_A-z0-9]*((-|\s)*[_A-z0-9])*$", palabra))
