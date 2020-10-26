@@ -34,15 +34,11 @@ class Scanner:
             return True
         elif (palabra == "mezclar"):
             return True
-        elif (palabra == "devolver"):
-            return True
         elif (palabra == "fresco"):
             return True
         elif (palabra == "agua_dulce"):
             return True
         elif (palabra == "cafe"):
-            return True
-        elif (palabra == "listo"):
             return True
         elif (palabra == "AND"):
             return True
@@ -80,40 +76,36 @@ class Scanner:
         return
 
     def esNombre(self,palabra):
-
-        patron = re.search("[a-z][a-zA-Z0-9]+", self.palabra)
-        resultado = False
-
-        if palabra == patron.group():
-            resultado = True
-    
+        resultado = bool(re.search("^[_A-z0-9]*((-|\s)*[_A-z0-9])*$", palabra))
         return resultado
 
 
     def esComentario(self,palabra):
         patron = re.search("^\$[a-zA-Z \-_\(\)/]+$", palabra)
-        resultado = False
         try:
             if palabra == patron.group():
-                resultado = True
+                return True
         except AttributeError:
             print("Error en la linea " + str(self.lineaAtributo) + ". Comentario contiene caracteres invalidos.")
         finally:
-            return resultado
+            return False
 
 
     def esPunto(self,palabra):
-
         if palabra == ".":
             return True
         else:
             return False
 
     def esOperador(self,palabra):
-        return
+        resultado = bool(re.search("(< | > | <=| >= | == | != | ! )", palabra))
+        return resultado
 
     def esFinal(self,palabra):
-        return
+        if(palabra== "Listo" | palabra== "Devolver"):
+            return True
+        else:
+            return False
 
     def esValor(self,palabra):
         return
@@ -130,7 +122,6 @@ class Scanner:
             return resultado
 
     def procesarInstruccion(self,palabra):
-
         if self.esPalabraReservada(palabra):
             self.formarToken("Palabra Reservada", palabra, self.lineaAtributo)
         elif self.esNombre(palabra):
