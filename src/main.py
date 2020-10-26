@@ -1,6 +1,8 @@
 import sys
 import re
 
+
+
 class Scanner:
     def __init__(self, nombre_archivo):
         self.lineaAtributo = 1
@@ -9,6 +11,7 @@ class Scanner:
 
     def formarToken(self, nombreToken, palabra, lineaAtributo):
         self.listaTokens.append([nombreToken, palabra, lineaAtributo])
+        print("<"+nombreToken+","+palabra+","+str(lineaAtributo)+">")
         # Aqui va el print de cada token.
 
     def esPalabraReservada(self, palabra):
@@ -65,13 +68,12 @@ class Scanner:
 
     def leerArchivo(self):
         archivo= open(self.archivo, 'r')
-        print("archivo", archivo)
         for linea in archivo.readlines():
-            print(linea)
             linea_leida = linea.split()
             for i in linea_leida:
-                # self.procesarInstruccion(i)
                 print(i)
+                self.procesarInstruccion(i)
+            self.lineaAtributo += 1
         archivo.close()
         return
 
@@ -108,7 +110,8 @@ class Scanner:
             return False
 
     def esValor(self,palabra):
-        return
+        resultado = bool(re.search("-?[0-9]+.[0-9]+", palabra) or re.search("-?[0-9]+", palabra))
+        return resultado
 
     def esAritmetica(self,palabra):
         listaAritmetica = ["+", "-", "/", "*", "(", ")", "%"]
@@ -124,14 +127,14 @@ class Scanner:
     def procesarInstruccion(self,palabra):
         if self.esPalabraReservada(palabra):
             self.formarToken("Palabra Reservada", palabra, self.lineaAtributo)
-        elif self.esNombre(palabra):
-            self.formarToken("Nombre", palabra, self.lineaAtributo)
-        elif self.esComentario(palabra):
-            self.formarToken("Comentario", palabra, self.lineaAtributo)
-        elif self.esPunto(palabra):
-            self.formarToken("Punto", palabra, self.lineaAtributo)
         elif self.esValor(palabra):
             self.formarToken("Valor", palabra, self.lineaAtributo)
+        elif self.esNombre(palabra):
+            self.formarToken("Nombre", palabra, self.lineaAtributo)
+        elif self.esPunto(palabra):
+            self.formarToken("Punto", palabra, self.lineaAtributo)
+        elif self.esComentario(palabra):
+            self.formarToken("Comentario", palabra, self.lineaAtributo)
         elif self.esOperador(palabra):
             self.formarToken("Operador", palabra, self.lineaAtributo)
         elif self.esFinal(palabra):
@@ -153,7 +156,6 @@ class Scanner:
         return
 
 def main():
-    print(sys.argv[1])
     Scanner( sys.argv[1]).leerArchivo()
 
 
