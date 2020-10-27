@@ -2,8 +2,6 @@
 import sys
 import re
 
-
-
 # Clase encargada de leer una entrada y devolver una secuencia de componentes lexicos (Tokens) para que estos puedan ser
 # utilizados durante la siguiente etapa de analisis
 class Explorador:
