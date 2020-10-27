@@ -12,5 +12,5 @@ Podemos encontrar cuatro ejemplos de el lenguaje y el archivo *main.py*
 que contiene el código del avance. 
 
 ### Ejemplos
-Se encuentran cuentro ejemplos de código en el lenguaje para poder ser
-procesados.
+Se encuentran cuatro ejemplos de código en el lenguaje diseñado para poder ser
+procesados por el explorador.
