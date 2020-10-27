@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 import re
 
@@ -23,8 +24,8 @@ class Explorador:
     # Si es una palabra reservada retorna True y si no retorna False
     def esPalabraReservada(self, palabra):
         palabraReservada=["platillo","sal","lizano","(","=>",")",",","[","]","-","mezclar","fresco","agua_dulce",
-                          "cafe","AND","OR","menu","nl","tab","acompanar","melcochon","servir","tomarOrden",
-                          "cocinar","\¿","\?"]
+                          "cafe","AND","OR","menu","nl","tab","acompañar","melcochon","servir","tomarOrden",
+                          "cocinar","¿","?"]
         resultado = False
         try:
             palabraReservada.index(palabra)
