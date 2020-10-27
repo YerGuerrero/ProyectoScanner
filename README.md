@@ -2,15 +2,15 @@
 La primera etapa del analizador léxico, en este avance se forman los tokens 
 necesarios para verificar la gramática y las reglas generadoras de nuestro lenguaje.
 
-##Carpetas
+## Carpetas
 Se pueden encontrar 3 carpetas en el proyecto, el código junto
  con los ejemplos se encuentran el la carpeta de *src*.  
-###Archivos
+### Archivos
 El proyecto contiene las bibliotecas necesarias así como requerimientos del lenguaje
 para el IDE utilizado.
 Podemos encontrar cuatro ejemplos de el lenguaje y el archivo *main.py*
 que contiene el código del avance. 
 
-###Ejemplos
+### Ejemplos
 Se encuentran cuentro ejemplos de código en el lenguaje para poder ser
 procesados.
