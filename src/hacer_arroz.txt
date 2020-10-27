@@ -1,11 +1,12 @@
-$ Función para hacer arroz
-platillo arroz(agua, arroz, cantidad)[
-	lizano arroz => arroz.
-	lizano agua => agua.
-	lizano i => 0.
-lizano olla=> 0.
+$ Funcion para hacer arroz
+platillo arroz ( agua , arroz , cantidad ) [
+	lizano arroz => arroz .
+	lizano agua => agua .
+	lizano i => 0 .
+lizano olla => 0 .
 mezclar - i < cantidad - [
      olla => arroz + agua .
+     i => i + 1 .
 ] 
-	Devolver olla.
+	Devolver olla .
 ]

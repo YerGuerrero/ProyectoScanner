@@ -1,17 +1,17 @@
-$ Función Fibonacci
-platillo fibonacci (n)[
-cafe ¿n<=0?[
-     Listo.
+$ Funcion Fibonacci
+platillo fibonacci ( n ) [
+cafe ¿ n <= 0 ? [
+     Listo .
 ]
-agua_dulce ¿n==1?[
+agua_dulce ¿ n == 1 ? [
     Devolver 1.
 ]
-	agua_dulce ¿n==2?[
+	agua_dulce ¿ n == 2 ? [
 	    Devolver 1.
 ]
 fresco [
-    resultado=> fibonacci(n-1)+fibonacci(n+2).
-    Devolver resultado.
+    resultado => fibonacci ( n - 1 ) + fibonacci ( n + 2 ) .
+    Devolver resultado .
 ]
-Listo.
+Listo .
 ]
